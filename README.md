@@ -73,7 +73,9 @@ Este proyecto es una resolución de una prueba técnica para desarrolladores Ful
     php artisan serve
     ```
 
-2. Abre tu navegador y ve a [http://localhost:8000](http://_vscodecontentref_/4).
+2. Abre tu navegador y ve a [http://localhost:8000](http://localhost:8000).
+
+3. Las credenciales de inicio de sesión para el primer usuario serán provistas en el cuerpo del correo de entrega de la prueba.
 
 ## Estructura del Proyecto
 
