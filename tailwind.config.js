@@ -1,13 +1,8 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-    content: [
-        "./resources/**/*.blade.php",
-        "./resources/livewire/*.blade.php",
-        "./resources/**/*.js",
-        "./resources/**/*.vue",
-    ],
-    theme: {
-        extend: {},
-    },
-    plugins: [],
-};
+import { defineConfig } from 'vite'
+import tailwindcss from '@tailwindcss/vite'
+export default defineConfig({
+  plugins: [
+    tailwindcss(),
+    // …
+  ],
+})
