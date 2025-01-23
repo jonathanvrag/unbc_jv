@@ -12,6 +12,7 @@
         <h1 class="text-2xl font-bold mb-4">Bienvenido al CRUD de Usuarios</h1>
         <a href="/users" class="bg-blue-500 text-white px-4 py-2 rounded">Ir a Usuarios</a>
     </div>
+    <livewire:users />
     @livewireScripts
 </body>
 </html>
