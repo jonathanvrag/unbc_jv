@@ -1,5 +1,7 @@
 <div class="flex items-center justify-center min-h-screen bg-gray-100">
+
     <div class="bg-white p-6 rounded shadow-md w-full max-w-sm">
+        <img src="/images/logo.png" alt="Logo principal" />
         <h2 class="text-2xl font-bold mb-4">Iniciar Sesión</h2>
 
         @if (session()->has('error'))

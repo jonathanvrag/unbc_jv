@@ -12,6 +12,7 @@ class Users extends Component
     public $users, $name, $last_name, $email, $phone_number, $password, $user_id;
     public $modal = false;
     public $showUsers = false;
+    public $isEditing = false;
 
     protected $listeners = ['showUsers' => 'show'];
 
@@ -35,6 +36,7 @@ class Users extends Component
         $this->resetInputFields();
         $this->password = '';
         $this->openModal();
+        $this->isEditing = false;
     }
 
     public function openModal()
@@ -144,6 +146,7 @@ class Users extends Component
     {
         $user = User::findOrFail($id);
         $this->fillUserData($user);
+        $this->isEditing = true;
         $this->openModal();
     }
 
