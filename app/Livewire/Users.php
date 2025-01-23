@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\User;
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class Users extends Component
@@ -156,5 +157,11 @@ class Users extends Component
             session()->flash('error', 'Error al eliminar el usuario. Por favor, inténtalo de nuevo más tarde.');
             Log::error($e->getMessage());
         }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/');
     }
 }

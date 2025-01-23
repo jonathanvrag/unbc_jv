@@ -1,44 +1,49 @@
 <div>
-    <button wire:click='create' class='bg-blue-500 text-white px-4 py-2 rounded'>Crear Usuario</button>
+    @if (Auth::check())
+        <button wire:click='logout' class='bg-red-500 text-white px-4 py-2 rounded'>Cerrar Sesión</button>
+        <button wire:click='create' class='bg-blue-500 text-white px-4 py-2 rounded'>Crear Usuario</button>
 
-    <table class='table-auto w-full mt-4'>
-        <thead>
-            <tr>
-                <th class='px-4 py-2'>Nombre</th>
-                <th class='px-4 py-2'>Apellido</th>
-                <th class='px-4 py-2'>Correo</th>
-                <th class='px-4 py-2'>Teléfono</th>
-                <th class='px-4 py-2'>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @if ($users && $users->count())
-                @foreach ($users as $user)
-                    <tr>
-                        <td class='border px-4 py-2'>{{ $user->name }}</td>
-                        <td class='border px-4 py-2'>{{ $user->last_name }}</td>
-                        <td class='border px-4 py-2'>{{ $user->email }}</td>
-                        <td class='border px-4 py-2'>{{ $user->phone_number }}</td>
-                        <td class='border px-4 py-2'>
-                            <button wire:click='edit({{ $user->id }})'
-                                class='bg-green-500 text-white px-2 py-1 rounded'>Editar</button>
-                            <button wire:click='delete({{ $user->id }})'
-                                class='bg-red-500 text-white px-2 py-1 rounded'>Eliminar</button>
-                        </td>
-                    </tr>
-                @endforeach
-            @else
+        <table class='table-auto w-full mt-4'>
+            <thead>
                 <tr>
-                    <td colspan="5" class='border px-4 py-2'>No hay usuarios disponibles.</td>
+                    <th class='px-4 py-2'>Nombre</th>
+                    <th class='px-4 py-2'>Apellido</th>
+                    <th class='px-4 py-2'>Correo</th>
+                    <th class='px-4 py-2'>Teléfono</th>
+                    <th class='px-4 py-2'>Acciones</th>
                 </tr>
-            @endif
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @if ($users && $users->count())
+                    @foreach ($users as $user)
+                        <tr>
+                            <td class='border px-4 py-2'>{{ $user->name }}</td>
+                            <td class='border px-4 py-2'>{{ $user->last_name }}</td>
+                            <td class='border px-4 py-2'>{{ $user->email }}</td>
+                            <td class='border px-4 py-2'>{{ $user->phone_number }}</td>
+                            <td class='border px-4 py-2'>
+                                <button wire:click='edit({{ $user->id }})'
+                                    class='bg-green-500 text-white px-2 py-1 rounded'>Editar</button>
+                                <button wire:click='delete({{ $user->id }})'
+                                    class='bg-red-500 text-white px-2 py-1 rounded'>Eliminar</button>
+                            </td>
+                        </tr>
+                    @endforeach
+                @else
+                    <tr>
+                        <td colspan="5" class='border px-4 py-2'>No hay usuarios disponibles.</td>
+                    </tr>
+                @endif
+            </tbody>
+        </table>
+    @else
+        <p class="text-red-500">Debe iniciar sesión para ver esta página.</p>
+    @endif
 
     @if ($modal)
         <div class='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center'>
             <div class='bg-white p-6 rounded'>
-                <form>
+                <form wire:submit.prevent="store">
                     <input type='text' wire:model='name' placeholder='Nombre' class='block w-full mb-2'>
                     @error('name')
                         <span class="text-red-500">{{ $message }}</span>
@@ -64,8 +69,7 @@
                         <span class="text-red-500">{{ $message }}</span>
                     @enderror
 
-                    <button wire:click='@if ($user_id) update @else store @endif' type='button'
-                        class='bg-blue-500 text-white px-4 py-2 rounded'>Guardar</button>
+                    <button type='submit' class='bg-blue-500 text-white px-4 py-2 rounded'>Guardar</button>
                     <button wire:click='closeModal' type='button'
                         class='bg-gray-500 text-white px-4 py-2 rounded'>Cancelar</button>
                 </form>
