@@ -49,7 +49,16 @@
             </tbody>
         </table>
     @else
-        <p class="text-red-600 font-semibold">Debe iniciar sesión para ver esta página.</p>
+        <div class="flex items-center justify-center min-h-screen">
+            <div class="bg-white p-8 rounded-lg shadow-lg text-center">
+                <h2 class="text-2xl font-bold text-red-600 mb-4">Acceso Restringido</h2>
+                <p class="text-gray-700 mb-4">Debe iniciar sesión para ver esta página.</p>
+                <button wire:click='home'
+                    class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition duration-300 ease-in-out transform hover:scale-105">
+                    Ir al Inicio de Sesión
+                </button>
+            </div>
+        </div>
     @endif
 
     @if ($modal)

@@ -167,4 +167,9 @@ class Users extends Component
         Auth::logout();
         return redirect('/');
     }
+
+    public function home()
+    {
+        return redirect('/');
+    }
 }
