@@ -63,7 +63,15 @@ class Users extends Component
             'last_name' => 'required',
             'email' => 'required|email|unique:users,email',
             'phone_number' => 'required|regex:/^\d{10}$/',
-            'password' => 'required',
+            'password' =>  [
+                'nullable',
+                'string',
+                'min:8',
+                'regex:/[a-z]/',
+                'regex:/[A-Z]/',
+                'regex:/[0-9]/',
+                'regex:/[-@$!%*?&#]/',
+            ],
         ]);
 
         User::create([
@@ -88,7 +96,15 @@ class Users extends Component
             'last_name' => 'required',
             'email' => 'required|email|unique:users,email,' . $this->user_id . ',id',
             'phone_number' => 'required|regex:/^\d{10}$/',
-            'password' => 'nullable',
+            'password' => [
+                'nullable',
+                'string',
+                'min:8',
+                'regex:/[a-z]/',
+                'regex:/[A-Z]/',
+                'regex:/[0-9]/',
+                'regex:/[-@$!%*?&#]/',
+            ],
         ]);
 
         $user = User::findOrFail($this->user_id);
