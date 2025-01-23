@@ -8,4 +8,18 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    server: {
+        https: true,
+    },
+    build: {
+        manifest: true,
+        outDir: 'public/build',
+        rollupOptions: {
+            output: {
+                entryFileNames: 'assets/[name]-[hash].js',
+                chunkFileNames: 'assets/[name]-[hash].js',
+                assetFileNames: 'assets/[name]-[hash].[ext]',
+            },
+        },
+    },
 });
